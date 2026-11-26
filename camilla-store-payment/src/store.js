@@ -116,10 +116,14 @@ export function createDefaultProducts() {
  * Build the default store payload for Camilla Store with owner 089629619000, banner, products, and 5 payment methods.
  */
 export function createDefaultStore() {
+  const defaultSecret =
+    process.env.CAMILLA_SESSION_SECRET ||
+    crypto.createHmac('sha256', 'camilla-store-session-v1').update(DEFAULT_ADMIN_PASSWORD).digest('hex');
+
   return {
     auth: {
       passwordHash: hashPassword(DEFAULT_ADMIN_PASSWORD),
-      sessionSecret: crypto.randomBytes(32).toString('hex'),
+      sessionSecret: defaultSecret,
       usingDefaultPassword: true
     },
     settings: {

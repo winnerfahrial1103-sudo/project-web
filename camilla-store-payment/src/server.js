@@ -182,7 +182,14 @@ async function isAuthenticated(req, store) {
 export async function handleRequest(req, res) {
   try {
     const url = new URL(req.url || '/', `http://${req.headers.host || 'localhost'}`);
-    const pathname = decodeURIComponent(url.pathname);
+    const rewrittenPath = url.searchParams.get('__path');
+    const rawPathname =
+      rewrittenPath ||
+      (url.pathname !== '/api/index.js' && url.pathname !== '/api/index'
+        ? url.pathname
+        : req.headers['x-vercel-original-path'] || req.headers['x-matched-path'] || url.pathname);
+    const decodedPath = decodeURIComponent(rawPathname);
+    const pathname = decodedPath.length > 1 ? decodedPath.replace(/\/+$/, '') : decodedPath;
     const method = req.method || 'GET';
 
     // Page routes (including shortcut links /payment, /produk, /katalog, /order)

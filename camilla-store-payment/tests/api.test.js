@@ -37,6 +37,12 @@ describe('Camilla Store HTTP API & Admin flows', () => {
       assert.equal(res.status, 200, `Expected 200 for shortcut ${shortcut}`);
     }
 
+    // Verify Vercel rewrite simulation (?__path=/api/store)
+    const vercelRewriteRes = await fetch(`${baseUrl}/api/index.js?__path=/api/store`);
+    assert.equal(vercelRewriteRes.status, 200);
+    const vercelRewriteData = await vercelRewriteRes.json();
+    assert.equal(vercelRewriteData.settings.storeName, 'Camilla Store');
+
     const apiRes = await fetch(`${baseUrl}/api/store`);
     assert.equal(apiRes.status, 200);
     const data = await apiRes.json();

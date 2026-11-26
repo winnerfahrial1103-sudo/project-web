@@ -11,7 +11,7 @@
     "announcement": "Halo kak! Sebelum transfer, pastikan cek status limit wallet yang tersedia dulu ya. Setelah transfer jangan lupa konfirmasi ke admin 💕",
     "showAnnouncement": true,
     "whatsappNumber": "6289629619000",
-    "footerNote": "Camilla Store • Safe & Trusted • WA Owner: 0896-2961-9000 🌸",
+    "footerNote": "Camilla Store • Safe & Trusted 🌸",
     "bannerImage": "/assets/camilla-banner.jpg",
     "ownerPhone": "089629619000",
     "bioOwnerName": "Camilla",
@@ -113,7 +113,7 @@
       "order": 5
     }
   ],
-  "updatedAt": "2026-11-26T12:00:02.184Z",
+  "updatedAt": "2026-11-26T12:32:35.456Z",
   "products": [
     {
       "id": "prod-1",
@@ -525,5 +525,6 @@
       "available": true,
       "order": 41
     }
-  ]
+  ],
+  "uploads": {}
 }
