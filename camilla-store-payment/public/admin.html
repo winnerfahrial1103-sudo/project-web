@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#ffdbed">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>Admin Panel — Camilla Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/theme.css?v=14">
+</head>
+<body>
+  <div class="kawaii-bg" aria-hidden="true">
+    <span class="kawaii-deco" style="top:8%;left:4%;font-size:24px;animation-delay:0s;">🎀</span>
+    <span class="kawaii-deco" style="top:16%;right:5%;font-size:22px;animation-delay:1.4s;">🌸</span>
+    <span class="kawaii-deco" style="bottom:12%;left:5%;font-size:22px;animation-delay:2.1s;">🌷</span>
+    <span class="kawaii-deco" style="bottom:14%;right:5%;font-size:24px;animation-delay:0.8s;">🎀</span>
+  </div>
+  <main class="container container--wide">
+    <!-- Login View -->
+    <section id="loginView" class="login-shell" hidden>
+      <div class="store-avatar" aria-hidden="true">🔒</div>
+      <h1 class="store-title" style="font-size:1.5rem;">Admin Camilla Store</h1>
+      <p class="store-tagline" style="margin-bottom:18px;">Masuk untuk mengubah nomor wallet, upload QRIS, update informasi limit, dan kelola katalog jualan 💕</p>
+      <form id="loginForm" style="display:flex;flex-direction:column;gap:12px;text-align:left;">
+        <div class="field">
+          <label for="loginPassword">Password Admin</label>
+          <input id="loginPassword" class="input" type="password" placeholder="Masukkan password admin" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn btn--primary btn--block">Masuk ke Admin Panel ✨</button>
+      </form>
+      <div style="margin-top:16px;">
+        <a href="/" class="admin-entry">← Kembali ke Halaman Customer</a>
+      </div>
+    </section>
+
+    <!-- Admin Dashboard View -->
+    <section id="dashboardView" hidden>
+      <header class="admin-topbar">
+        <div>
+          <h1 style="margin:0;font-size:1.3rem;font-weight:800;">🎀 Admin Camilla Store</h1>
+          <p id="adminUpdatedText" style="margin:2px 0 0;font-size:0.82rem;font-weight:700;color:var(--plum-500);">Siap kelola toko, katalog jualan, metode pembayaran & limit</p>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <a href="/" target="_blank" rel="noopener" class="btn btn--soft btn--sm">Lihat Web Customer ↗</a>
+          <button id="openPasswordModalBtn" type="button" class="btn btn--outline btn--sm">🔑 Ganti Password</button>
+          <button id="logoutBtn" type="button" class="btn btn--outline btn--sm">Keluar</button>
+        </div>
+      </header>
+
+      <div id="defaultPassBanner" class="alert-banner" hidden>
+        <span>⚠️ Kamu masih memakai password default. Demi keamanan rekening & QRIS, segera ganti password ya!</span>
+        <button id="bannerChangePassBtn" type="button" class="btn btn--primary btn--sm">Ganti Sekarang</button>
+      </div>
+
+      <!-- Shortcut Links Bar -->
+      <section class="shortcut-bar">
+        <span style="font-size:0.84rem;font-weight:800;color:var(--pink-600);">🔗 Shortcut Link Cepat (Klik untuk salin & kirim ke customer):</span>
+        <button type="button" class="btn btn--primary btn--sm" data-copy-shortcut="/payment">💳 Link Payment (/payment)</button>
+        <button type="button" class="btn btn--soft btn--sm" data-copy-shortcut="/payment/qris">📱 Link QRIS (/payment/qris)</button>
+        <button type="button" class="btn btn--primary btn--sm" data-copy-shortcut="/produk">🛍️ Link Produk (/produk)</button>
+        <button type="button" class="btn btn--soft btn--sm" data-copy-shortcut="/order">💬 Link Form Order (/order)</button>
+      </section>
+
+      <!-- Store Settings -->
+      <section class="admin-panel-card">
+        <div class="section-heading" style="margin-top:0;">
+          <h2>🌸 Pengaturan Toko & Kontak Owner</h2>
+        </div>
+        <form id="settingsForm" class="form-grid">
+          <div class="field">
+            <label for="setStoreName">Nama Store</label>
+            <input id="setStoreName" class="input" type="text" maxlength="60" required>
+          </div>
+          <div class="field">
+            <label for="setOpStatus">Status Operasional Toko</label>
+            <select id="setOpStatus" class="select">
+              <option value="open">Buka • 99+ Chat Open Now!</option>
+              <option value="busy">Antre • Konfirmasi Sedikit Lambat</option>
+              <option value="closed">Tutup Sementara</option>
+            </select>
+          </div>
+          <div class="field field--full">
+            <label for="setTagline">Tagline / Deskripsi Singkat</label>
+            <input id="setTagline" class="input" type="text" maxlength="140">
+          </div>
+          <div class="field">
+            <label for="setOwnerPhone">No. Owner (ditampilkan di Bio)</label>
+            <input id="setOwnerPhone" class="input" type="text" maxlength="25" placeholder="089629619000">
+          </div>
+          <div class="field">
+            <label for="setWhatsapp">No. WhatsApp Konfirmasi (cth: 6289629619000)</label>
+            <input id="setWhatsapp" class="input" type="text" maxlength="25" placeholder="6289629619000">
+          </div>
+          <div class="field">
+            <label for="setBioOwnerName">Nama Owner di Bio (cth: Camilla)</label>
+            <input id="setBioOwnerName" class="input" type="text" maxlength="60" placeholder="Camilla">
+          </div>
+          <div class="field">
+            <label for="setAvatarBubble">Teks Bubble Chat di Foto Profil</label>
+            <input id="setAvatarBubble" class="input" type="text" maxlength="40" placeholder="klik akuu ><">
+          </div>
+          <div class="field field--full">
+            <label for="setBioQuote">Slogan / Quote Bio</label>
+            <input id="setBioQuote" class="input" type="text" maxlength="140" placeholder="Safe, Fast & Trusted Digital Store 🌸">
+          </div>
+          <div class="field field--full">
+            <label for="setBioDesc">Deskripsi Bio Store (Tampil saat foto profil diklik)</label>
+            <textarea id="setBioDesc" class="textarea" maxlength="400" placeholder="Ceritakan singkat tentang Camilla Store..."></textarea>
+          </div>
+          <div class="field">
+            <label for="setWaGroupName">Judul Kotak Grup &amp; Link di Bio</label>
+            <input id="setWaGroupName" class="input" type="text" maxlength="80" placeholder="Grup & Info Resmi Camilla Store">
+          </div>
+          <div class="field">
+            <label for="setWaGroupUrl">Link Gabung Grup WA</label>
+            <input id="setWaGroupUrl" class="input" type="url" maxlength="500" placeholder="https://chat.whatsapp.com/...">
+          </div>
+          <div class="field">
+            <label for="setWaChannelUrl">Link Saluran WA</label>
+            <input id="setWaChannelUrl" class="input" type="url" maxlength="500" placeholder="https://whatsapp.com/channel/...">
+          </div>
+          <div class="field">
+            <label for="setTestimoniUrl">Link Testimoni</label>
+            <input id="setTestimoniUrl" class="input" type="url" maxlength="500" placeholder="https://...">
+          </div>
+          <div class="field">
+            <label for="setAntreanUrl">Link Cek Antrean</label>
+            <input id="setAntreanUrl" class="input" type="url" maxlength="500" placeholder="https://...">
+          </div>
+          <div class="field">
+            <label for="setBioHours">Jam Operasional di Bio</label>
+            <input id="setBioHours" class="input" type="text" maxlength="100" placeholder="Setiap Hari • 08.00 - 23.00 WIB">
+          </div>
+          <div class="field field--full">
+            <label for="setBioLocation">Lokasi / Info Layanan di Bio</label>
+            <input id="setBioLocation" class="input" type="text" maxlength="100" placeholder="Indonesia • Online Store Safe & Trusted">
+          </div>
+          <div class="field field--full">
+            <label for="setFooter">Catatan Footer</label>
+            <input id="setFooter" class="input" type="text" maxlength="140">
+          </div>
+          <div class="field field--full">
+            <label for="setAnnouncement">Banner Pengumuman untuk Customer</label>
+            <textarea id="setAnnouncement" class="textarea" maxlength="300" placeholder="Misal: Cek status limit dulu sebelum transfer ya kak~"></textarea>
+          </div>
+          <div class="field field--full" style="flex-direction:row;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+            <label class="checkbox-row">
+              <input id="setShowAnnouncement" type="checkbox">
+              <span>Tampilkan banner pengumuman di halaman depan</span>
+            </label>
+            <button type="submit" class="btn btn--primary">Simpan Pengaturan Toko 💾</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Methods Management -->
+      <section class="admin-panel-card">
+        <div class="section-heading" style="margin-top:0;flex-wrap:wrap;gap:10px;">
+          <h2>💳 Kelola Wallet, QRIS & Info Limit</h2>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <button id="resetLimitsBtn" type="button" class="btn btn--soft btn--sm">🔄 Reset Limit Harian</button>
+            <button id="addMethodBtn" type="button" class="btn btn--primary btn--sm">＋ Tambah Metode</button>
+          </div>
+        </div>
+        <div id="adminMethodsList" style="display:flex;flex-direction:column;gap:14px;"></div>
+      </section>
+
+      <!-- Products Catalog Management -->
+      <section class="admin-panel-card">
+        <div class="section-heading" style="margin-top:0;flex-wrap:wrap;gap:10px;">
+          <h2>🛍️ Kelola Katalog Produk & Jasa (<span id="adminProductCount">0</span>)</h2>
+          <div class="admin-prod-toolbar">
+            <input id="adminProductSearch" class="input admin-search-input" type="search" placeholder="Cari produk...">
+            <button id="addProductBtn" type="button" class="btn btn--primary btn--sm">＋ Tambah Produk / Jasa</button>
+          </div>
+        </div>
+        <div id="adminProductsList" class="products-grid"></div>
+      </section>
+    </section>
+  </main>
+
+  <!-- Edit / Create Method Modal -->
+  <div id="methodModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="methodModalTitle">
+    <div class="modal-panel modal-panel--wide">
+      <div class="modal-header">
+        <h3 id="methodModalTitle">Edit Metode Pembayaran</h3>
+        <button id="closeMethodModal" type="button" class="btn btn--outline btn--sm">Tutup ✕</button>
+      </div>
+      <form id="methodForm" class="form-grid">
+        <input id="mId" type="hidden">
+        <div class="field">
+          <label for="mName">Nama Metode (contoh: DANA / QRIS 1)</label>
+          <input id="mName" class="input" type="text" maxlength="50" required>
+        </div>
+        <div class="field">
+          <label for="mCategory">Kategori</label>
+          <select id="mCategory" class="select">
+            <option value="ewallet">E-Wallet</option>
+            <option value="qris">QRIS</option>
+            <option value="bank">Transfer Bank</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="mBrand">Warna / Inisial Default</label>
+          <select id="mBrand" class="select">
+            <option value="dana">DANA</option>
+            <option value="gopay">GoPay</option>
+            <option value="spay">ShopeePay (SPay)</option>
+            <option value="ovo">OVO</option>
+            <option value="qris">QRIS</option>
+            <option value="bca">BCA</option>
+            <option value="bri">BRI</option>
+            <option value="mandiri">Mandiri</option>
+            <option value="seabank">SeaBank</option>
+            <option value="ewallet">E-Wallet Lainnya</option>
+            <option value="bank">Bank Lainnya</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="mStatus">Status Saat Ini</label>
+          <select id="mStatus" class="select">
+            <option value="available">Tersedia</option>
+            <option value="near_limit">Hampir Penuh</option>
+            <option value="limit_full">Limit Penuh</option>
+            <option value="maintenance">Maintenance</option>
+          </select>
+        </div>
+        <div class="field field--full">
+          <label>Foto / Logo Metode Pembayaran (Opsional — menggantikan inisial DN/GP/SP)</label>
+          <div class="upload-row">
+            <img id="mLogoPreview" class="upload-preview" style="width:52px;height:52px;border-radius:14px;object-fit:cover;" src="/assets/camilla-banner.jpg" alt="Preview Logo" hidden>
+            <div style="flex:1;min-width:200px;display:flex;flex-direction:column;gap:6px;">
+              <input id="mLogoFile" class="input" type="file" accept="image/png,image/jpeg,image/webp">
+              <div style="display:flex;gap:6px;">
+                <input id="mLogoImageUrl" class="input" type="text" placeholder="Kosongkan jika ingin memakai inisial bawaan">
+                <button id="mClearLogoBtn" type="button" class="btn btn--outline btn--sm">Pakai Inisial</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field" id="mNumberField">
+          <label for="mAccountNumber">Nomor HP / Rekening</label>
+          <input id="mAccountNumber" class="input" type="text" maxlength="60" placeholder="0896-2961-9000">
+        </div>
+        <div class="field">
+          <label for="mHolderName">Atas Nama / Nama Merchant</label>
+          <input id="mHolderName" class="input" type="text" maxlength="80" placeholder="Camilla Store">
+        </div>
+        <div class="field field--full">
+          <label for="mLimitInfo">Informasi Limit untuk Customer</label>
+          <input id="mLimitInfo" class="input" type="text" maxlength="220" placeholder="Contoh: Sisa limit hari ini Rp 2.500.000 / Bebas biaya admin">
+        </div>
+        <div class="field">
+          <label for="mLimitMax">Batas Limit Maksimal (Rp, opsional: 0 = tidak tampilkan bar)</label>
+          <input id="mLimitMax" class="input" type="number" min="0" step="1000" value="0">
+        </div>
+        <div class="field">
+          <label for="mLimitUsed">Sudah Terpakai (Rp)</label>
+          <input id="mLimitUsed" class="input" type="number" min="0" step="1000" value="0">
+        </div>
+        <div class="field field--full" id="mQrisSection" hidden>
+          <label>Gambar QRIS (PNG / JPG / WebP, maks 3 MB)</label>
+          <div class="upload-row">
+            <img id="mQrisPreview" class="upload-preview" src="/assets/qris-sample-1.svg" alt="Preview QRIS">
+            <div style="flex:1;min-width:200px;display:flex;flex-direction:column;gap:8px;">
+              <input id="mQrisFile" class="input" type="file" accept="image/png,image/jpeg,image/webp">
+              <input id="mQrisImageUrl" class="input" type="text" placeholder="Atau URL gambar QRIS (/uploads/...)">
+            </div>
+          </div>
+        </div>
+        <div class="field field--full" id="mNmidField" hidden>
+          <label for="mNmid">NMID QRIS (opsional)</label>
+          <input id="mNmid" class="input" type="text" maxlength="50" placeholder="ID1020...">
+        </div>
+        <div class="field field--full">
+          <label for="mNote">Catatan Tambahan (opsional)</label>
+          <input id="mNote" class="input" type="text" maxlength="220" placeholder="Contoh: Harap kirim bukti transfer ke WhatsApp ya kak">
+        </div>
+        <div class="field field--full" style="flex-direction:row;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+          <label class="checkbox-row">
+            <input id="mHidden" type="checkbox">
+            <span>Sembunyikan dari halaman customer</span>
+          </label>
+          <button type="submit" class="btn btn--primary">Simpan Perubahan 💾</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit / Create Product Modal -->
+  <div id="productModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="productModalTitle">
+    <div class="modal-panel modal-panel--wide">
+      <div class="modal-header">
+        <h3 id="productModalTitle">Tambah / Edit Produk & Jasa</h3>
+        <button id="closeProductModal" type="button" class="btn btn--outline btn--sm">Tutup ✕</button>
+      </div>
+      <form id="productForm" class="form-grid">
+        <input id="pId" type="hidden">
+        <div class="field">
+          <label for="pName">Nama Produk / Jasa</label>
+          <input id="pName" class="input" type="text" maxlength="80" placeholder="Contoh: Topup All Game" required>
+        </div>
+        <div class="field">
+          <label for="pCategory">Kategori</label>
+          <select id="pCategory" class="select">
+            <option value="game">🎮 Topup & Game</option>
+            <option value="app">📱 App Prem & Media</option>
+            <option value="design">🎨 Design & Edit</option>
+            <option value="sosmed">🚀 Sosmed, JPM & Bot</option>
+            <option value="jasa">🛠️ Jasa Digital & CV</option>
+            <option value="ppob">⚡ Pulsa, Kuota & PPOB</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="pBadge">Label Badge (contoh: Best Seller / Ready)</label>
+          <input id="pBadge" class="input" type="text" maxlength="35" placeholder="Ready">
+        </div>
+        <div class="field">
+          <label for="pPriceText">Info Harga / Status (contoh: Mulai Rp 5.000 / Tanya Admin)</label>
+          <input id="pPriceText" class="input" type="text" maxlength="45" placeholder="Tanya Admin">
+        </div>
+        <div class="field field--full">
+          <label for="pDesc">Deskripsi Singkat</label>
+          <input id="pDesc" class="input" type="text" maxlength="200" placeholder="Keterangan singkat produk/layanan">
+        </div>
+        <div class="field field--full" style="flex-direction:row;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+          <label class="checkbox-row">
+            <input id="pAvailable" type="checkbox" checked>
+            <span>Tampilkan produk ini di katalog customer (Ready)</span>
+          </label>
+          <button type="submit" class="btn btn--primary">Simpan Produk 💾</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Change Password Modal -->
+  <div id="passwordModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="passwordModalTitle">
+    <div class="modal-panel">
+      <div class="modal-header">
+        <h3 id="passwordModalTitle">🔑 Ganti Password Admin</h3>
+        <button id="closePasswordModal" type="button" class="btn btn--outline btn--sm">Tutup ✕</button>
+      </div>
+      <form id="passwordForm" style="display:flex;flex-direction:column;gap:12px;">
+        <div class="field">
+          <label for="oldPassword">Password Lama</label>
+          <input id="oldPassword" class="input" type="password" required autocomplete="current-password">
+        </div>
+        <div class="field">
+          <label for="newPassword">Password Baru (min. 6 karakter)</label>
+          <input id="newPassword" class="input" type="password" minlength="6" required autocomplete="new-password">
+        </div>
+        <button type="submit" class="btn btn--primary btn--block">Simpan Password Baru</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="/js/admin.js?v=14"></script>
+</body>
+</html>

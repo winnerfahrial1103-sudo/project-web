@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/index.js" },
+    { "source": "/uploads/(.*)", "destination": "/api/index.js" },
+    { "source": "/admin", "destination": "/admin.html" },
+    { "source": "/payment", "destination": "/index.html" },
+    { "source": "/pay", "destination": "/index.html" },
+    { "source": "/payment/(.*)", "destination": "/index.html" },
+    { "source": "/produk", "destination": "/index.html" },
+    { "source": "/katalog", "destination": "/index.html" },
+    { "source": "/list", "destination": "/index.html" },
+    { "source": "/produk/(.*)", "destination": "/index.html" },
+    { "source": "/katalog/(.*)", "destination": "/index.html" },
+    { "source": "/order", "destination": "/index.html" }
+  ]
+}

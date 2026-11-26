@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#ffdbed">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>Camilla Store — Safe & Trusted • Payment & Katalog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/theme.css?v=16">
+</head>
+<body>
+  <!-- Living Animated Aurora, Falling Sakura & Coquette Stickers -->
+  <div class="kawaii-bg" aria-hidden="true">
+    <div class="aurora-blob aurora-blob--1"></div>
+    <div class="aurora-blob aurora-blob--2"></div>
+    <div class="aurora-blob aurora-blob--3"></div>
+
+    <span class="sakura-petal" style="left:12%;font-size:16px;animation-duration:11s;animation-delay:0s;">🌸</span>
+    <span class="sakura-petal" style="left:28%;font-size:14px;animation-duration:14s;animation-delay:3s;">💮</span>
+    <span class="sakura-petal" style="left:52%;font-size:15px;animation-duration:12s;animation-delay:1.5s;">🌸</span>
+    <span class="sakura-petal" style="left:74%;font-size:13px;animation-duration:15s;animation-delay:4.2s;">🩷</span>
+    <span class="sakura-petal" style="left:89%;font-size:16px;animation-duration:13s;animation-delay:2.1s;">🌸</span>
+
+    <span class="kawaii-deco" style="top:6%;left:5%;font-size:26px;animation-delay:0s;">🎀</span>
+    <span class="kawaii-deco" style="top:14%;right:6%;font-size:24px;animation-delay:1.2s;">🌸</span>
+    <span class="kawaii-cloud" style="top:24%;left:3%;animation-delay:0.6s;">cute ♡♡♡</span>
+    <span class="kawaii-cloud" style="top:32%;right:3%;animation-delay:2.1s;">99+ chat • open!</span>
+    <span class="kawaii-deco" style="top:52%;left:4%;font-size:22px;animation-delay:1.7s;">🌷</span>
+    <span class="kawaii-deco" style="top:62%;right:5%;font-size:26px;animation-delay:0.8s;">🎀</span>
+    <span class="kawaii-deco" style="bottom:14%;left:6%;font-size:24px;animation-delay:2.5s;">🌸</span>
+    <span class="kawaii-deco" style="bottom:10%;right:7%;font-size:22px;animation-delay:1.4s;">🍓</span>
+  </div>
+
+  <main class="container">
+    <!-- Cute Window-Style Profile Header -->
+    <header class="hero-card">
+      <div class="hero-window-bar" aria-hidden="true">
+        <span class="window-hearts">♡ ♡ ♡</span>
+        <span class="window-pill">🎀 camilla store • cutie</span>
+        <span>✦ ✿ ✦</span>
+      </div>
+      <div class="kawaii-ticker" aria-hidden="true">
+        <div class="kawaii-ticker__track">
+          🌸 Welcome to Camilla Store • Safe &amp; Trusted 100% • Topup All Game • App Prem • Design &amp; Edit • Jasa Sosmed &amp; Bot • CV &amp; Rekber • Cek Status Limit Sebelum Transfer Ya Kak 💕
+        </div>
+      </div>
+      <div class="hero-body">
+        <div id="openBioAvatar" class="hero-avatar-wrap" role="button" tabindex="0" aria-label="Buka Bio & Informasi Camilla Store" title="Klik untuk melihat Bio Camilla Store">
+          <img id="storeBannerImg" class="hero-avatar-img" src="/assets/camilla-banner.jpg" alt="Foto Profil Camilla Store">
+          <span class="hero-avatar-badge" aria-hidden="true">🎀</span>
+          <span id="avatarBubbleText" class="avatar-speech-bubble">klik akuu &gt;&lt;</span>
+        </div>
+        <div class="store-title-row">
+          <h1 id="storeName" class="store-title">Camilla Store</h1>
+          <span class="trusted-badge">Safe & Trusted ✨</span>
+        </div>
+        <p id="storeTagline" class="store-tagline">All Kebutuhan Digital, Topup Game & Payment Page Resmi</p>
+
+        <div class="hero-meta-bar">
+          <span id="storeStatusPill" class="pill status--available">
+            <span class="status-dot"></span>
+            <span>Buka</span>
+          </span>
+          <a id="chatOwnerBtn" href="https://wa.me/6289629619000" target="_blank" rel="noopener" class="btn btn--primary btn--sm">Chat Owner 💬</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Announcement -->
+    <section id="announcementBox" class="announcement" hidden>
+      <span aria-hidden="true">🎀</span>
+      <div id="announcementText"></div>
+    </section>
+
+    <!-- Clean 3-Tab Segmented Switcher -->
+    <nav class="main-nav" aria-label="Menu utama">
+      <button type="button" class="nav-pill-btn is-active" data-view="payment">💳 Payment & Limit</button>
+      <button type="button" class="nav-pill-btn" data-view="catalog">🛍️ List Jualan</button>
+      <button type="button" class="nav-pill-btn" data-view="all">✨ Semua</button>
+    </nav>
+
+    <!-- 1. Metode Pembayaran & Limit (Tampil Utama & Rapi) -->
+    <section id="paymentBlock" class="section-box">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">💳 Metode Pembayaran & Info Limit</h2>
+          <p class="section-sub">Cek status limit sebelum transfer. Klik "Salin" untuk nomor atau klik QRIS untuk memperbesar 🌸</p>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+          <span id="availableCountPill" class="pill pill--pink">5 Metode</span>
+          <button id="copyPaymentLinkBtn" type="button" class="btn btn--soft btn--sm" title="Salin link khusus halaman payment">🔗 Link Payment</button>
+        </div>
+      </div>
+      <nav id="categoryTabs" class="tabs-bar" aria-label="Filter metode pembayaran"></nav>
+      <div id="paymentSections" aria-live="polite"></div>
+    </section>
+
+    <!-- 2. Katalog Produk & Layanan (Rapi per Kategori) -->
+    <section id="catalogBlock" class="section-box" hidden>
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">🛍️ Daftar Produk & Layanan</h2>
+          <p class="section-sub">Klik tombol "Order" pada layanan yang diinginkan untuk memilih atau tanya via WA 💕</p>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+          <span id="productsCountPill" class="pill pill--pink">41 Layanan</span>
+          <button id="copyCatalogLinkBtn" type="button" class="btn btn--soft btn--sm" title="Salin link khusus halaman produk">🔗 Link Produk</button>
+        </div>
+      </div>
+      <div class="search-bar-wrap">
+        <input id="productSearchInput" class="search-input" type="search" placeholder="🔍 Cari layanan (contoh: Topup, Starlight, Roblox, App Prem, Nokos, CV, Pulsa)...">
+      </div>
+      <nav id="productCategoryTabs" class="tabs-bar" aria-label="Kategori produk"></nav>
+      <div id="productsGrid" aria-live="polite"></div>
+    </section>
+
+    <!-- 3. Form Order & Konfirmasi WhatsApp -->
+    <section id="confirmCard" class="section-box">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">💬 Form Order & Konfirmasi Pembayaran</h2>
+          <p class="section-sub">Isi data singkat ini lalu kirim otomatis ke WhatsApp Owner (0896-2961-9000)</p>
+        </div>
+      </div>
+      <form id="confirmForm" class="form-grid">
+        <div class="field">
+          <label for="waProduct">Produk / Layanan (Opsional)</label>
+          <input id="waProduct" class="input" type="text" maxlength="100" placeholder="Contoh: Topup ML / App Prem / CV">
+        </div>
+        <div class="field">
+          <label for="waMethod">Metode Pembayaran</label>
+          <select id="waMethod" class="select" required></select>
+        </div>
+        <div class="field">
+          <label for="waAmount">Nominal Transfer (Rp)</label>
+          <input id="waAmount" class="input" type="number" min="1" placeholder="Contoh: 50000" required>
+        </div>
+        <div class="field">
+          <label for="waSender">Atas Nama Pengirim</label>
+          <input id="waSender" class="input" type="text" maxlength="60" placeholder="Nama akun pengirim" required>
+        </div>
+        <div class="field field--full">
+          <label for="waNote">Catatan / ID Game (Opsional)</label>
+          <input id="waNote" class="input" type="text" maxlength="160" placeholder="Contoh: ID Game / keterangan order">
+        </div>
+        <div class="field field--full">
+          <button type="submit" class="btn btn--primary btn--block">Kirim Konfirmasi ke WhatsApp Owner 🌸</button>
+        </div>
+      </form>
+    </section>
+
+    <footer class="site-footer">
+      <div id="footerNote" class="footer-store-line">Camilla Store • Safe &amp; Trusted 🌸</div>
+      <div id="footerOwnerWa" class="footer-wa-line">WA Owner: 0896-2961-9000</div>
+      <a href="/admin" class="admin-entry" style="margin-top:4px;">🔒 Admin Panel</a>
+    </footer>
+  </main>
+
+  <!-- Lightbox Modal QRIS -->
+  <div id="qrisModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modalQrisTitle">
+    <div class="modal-panel">
+      <div class="modal-header">
+        <h3 id="modalQrisTitle">QRIS Camilla Store</h3>
+        <button id="closeQrisModal" type="button" class="btn btn--outline btn--sm">Tutup ✕</button>
+      </div>
+      <img id="modalQrisImg" class="modal-qris-img" src="" alt="Preview QRIS">
+      <p id="modalQrisMeta" style="margin:10px 0 14px;font-size:0.84rem;font-weight:700;color:var(--plum-700);text-align:center;"></p>
+      <div style="display:flex;gap:8px;justify-content:center;">
+        <a id="modalQrisDownload" class="btn btn--primary" href="#" download>⬇ Download QRIS</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Facebook-Style Cute Bio Profile Modal -->
+  <div id="bioModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="bioModalStoreName">
+    <div class="modal-panel">
+      <div class="bio-cover">
+        <button id="closeBioModal" type="button" class="bio-close-btn">Tutup ✕</button>
+      </div>
+      <div class="bio-header-center">
+        <img id="bioModalAvatar" class="bio-avatar" src="/assets/camilla-banner.jpg" alt="Foto Profil Camilla Store">
+        <div style="display:flex;align-items:center;justify-content:center;gap:6px;margin-top:6px;flex-wrap:wrap;">
+          <h3 id="bioModalStoreName" style="margin:0;font-size:1.25rem;font-weight:800;color:var(--plum-900);">Camilla Store</h3>
+          <span class="trusted-badge">Safe &amp; Trusted ✨</span>
+        </div>
+        <div id="bioModalQuote" class="bio-quote-pill">Safe, Fast &amp; Trusted Digital Store 🌸</div>
+      </div>
+
+      <div id="bioModalDesc" class="bio-desc-box"></div>
+
+      <div class="bio-info-list">
+        <div class="bio-info-item">
+          <div class="bio-info-icon" aria-hidden="true">👑</div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:0.72rem;color:var(--plum-500);">Owner / Admin</div>
+            <div id="bioModalOwnerName">Camilla</div>
+          </div>
+        </div>
+        <div class="bio-info-item">
+          <div class="bio-info-icon" aria-hidden="true">📞</div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:0.72rem;color:var(--plum-500);">Nomor WhatsApp Owner</div>
+            <div id="bioModalOwnerPhone">0896-2961-9000</div>
+          </div>
+          <div style="display:flex;gap:5px;">
+            <button id="bioCopyPhoneBtn" type="button" class="btn btn--soft btn--sm">Salin</button>
+            <a id="bioChatOwnerBtn" href="https://wa.me/6289629619000" target="_blank" rel="noopener" class="btn btn--primary btn--sm">Chat 💬</a>
+          </div>
+        </div>
+        <div class="bio-info-item" id="bioHoursRow">
+          <div class="bio-info-icon" aria-hidden="true">🕒</div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:0.72rem;color:var(--plum-500);">Jam Operasional</div>
+            <div id="bioModalHours">Setiap Hari • 08.00 - 23.00 WIB</div>
+          </div>
+        </div>
+        <div class="bio-info-item" id="bioLocationRow">
+          <div class="bio-info-icon" aria-hidden="true">📍</div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:0.72rem;color:var(--plum-500);">Lokasi &amp; Layanan</div>
+            <div id="bioModalLocation">Indonesia • Online Store Safe &amp; Trusted</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="bioGroupBox" class="bio-group-box">
+        <div style="font-size:0.84rem;font-weight:800;color:var(--plum-900);">
+          👥 <span id="bioModalGroupName">Grup &amp; Info Resmi Camilla Store</span>
+        </div>
+        <div class="bio-links-grid">
+          <a id="bioModalGroupBtn" href="https://chat.whatsapp.com/" target="_blank" rel="noopener" class="btn btn--primary btn--sm">
+            💬 Gabung Grup WA
+          </a>
+          <a id="bioModalChannelBtn" href="https://whatsapp.com/channel/" target="_blank" rel="noopener" class="btn btn--soft btn--sm">
+            📢 Saluran WA
+          </a>
+          <a id="bioModalTestimoniBtn" href="https://whatsapp.com/channel/" target="_blank" rel="noopener" class="btn btn--soft btn--sm">
+            ⭐ Link Testimoni
+          </a>
+          <a id="bioModalAntreanBtn" href="https://chat.whatsapp.com/" target="_blank" rel="noopener" class="btn btn--primary btn--sm">
+            📋 Cek Antrean
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="/js/app.js?v=16"></script>
+</body>
+</html>
