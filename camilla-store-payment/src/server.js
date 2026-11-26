@@ -599,7 +599,9 @@ export function createAppServer() {
   return http.createServer(handleRequest);
 }
 
-if (process.argv[1] && path.resolve(process.argv[1]) === __filename) {
+export default handleRequest;
+
+if (!process.env.VERCEL && process.argv[1] && path.resolve(process.argv[1]) === __filename) {
   ensureStore()
     .then(() => {
       const server = createAppServer();

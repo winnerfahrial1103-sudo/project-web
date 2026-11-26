@@ -14,9 +14,15 @@ export const PUBLIC_DIR = path.join(ROOT_DIR, 'public');
  * On Vercel Serverless, /var/task is read-only so fallback to os.tmpdir().
  */
 export function getPaths() {
+  const isServerless =
+    Boolean(process.env.VERCEL) ||
+    Boolean(process.env.LAMBDA_TASK_ROOT) ||
+    Boolean(process.env.AWS_LAMBDA_FUNCTION_NAME) ||
+    ROOT_DIR.startsWith('/var/task');
+
   const dataDir = process.env.CAMILLA_DATA_DIR
     ? path.resolve(process.env.CAMILLA_DATA_DIR)
-    : process.env.VERCEL
+    : isServerless
       ? path.join(os.tmpdir(), 'camilla-store-data')
       : path.join(ROOT_DIR, 'data');
   const uploadsDir = path.join(dataDir, 'uploads');
